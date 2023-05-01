@@ -1,10 +1,12 @@
-export const COLOR_RANGE = { RED: { MIN: 0, MAX: 50 }, ORANGE: { MIN: 51, MAX: 75 }, GREEN: { MIN: 76, MAX: 100 } }
+export const COLOR_RANGE = { RED: { MIN: 0, MAX: 49 }, ORANGE: { MIN: 50, MAX: 74 }, GREEN: { MIN: 75, MAX: 100 } }
 
 export const COLOR_MAP = { RED: '#FF0000', ORANGE: '#FFA200', GREEN: '#01AA88' }
 
 export const DATE_FORMAT = { day: '2-digit', month: '2-digit', year: 'numeric' }
 
 export const SUBJECTS_ENUM = { lang: 0, math: 1, comp: 2 }
+
+export const BASE_URL = '/applicants-list'
 
 export const MIN_WIDTH = 360
 
@@ -21,6 +23,7 @@ export const CONVERSION = {
   total: 'Суммарный балл',
   percent: 'Процент'
 }
+
 export const SORT = {
   PERCENT: 'percent',
   TOTAL: 'total',

@@ -26,6 +26,7 @@
         </li>
       </ul>
     </div>
+
     <button
       :class="{ active: orderBy[orderBy.by] === 'asc' }"
       @click="setOrder('asc')"
@@ -43,38 +44,28 @@
 
 <script setup>
 import { useApplicant } from '@/composable/useApplicant'
+import { useSelect } from '@/composable/useSelect'
+
 import { CONVERSION } from '@/composable/constants'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 import OrderArrow from '@/components/OrderArrow'
 
 const list = Object.entries(CONVERSION).map(([by, text]) => ({ text, by }))
 
-const { orderBy, convert, setSort, setOrder } = useApplicant()
-
 const dropDownList = ref(null)
 const dropDownBtn = ref(null)
 
-function toggleDropDown()
-{
-  dropDownList.value?.classList.toggle('dropdown__list--visible')
-  dropDownBtn.value?.classList.toggle('dropdown__button--active')
-}
+const { orderBy, convert, setSort, setOrder } = useApplicant()
+const {
 
-function closeDropDown()
-{
-  dropDownList.value?.classList.remove('dropdown__list--visible')
-  dropDownBtn.value?.classList.remove('dropdown__button--active')
-}
+  toggleDropDown,
+  closeDropDown
 
-onMounted(() => {
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDropDown()
-  })
-  document.addEventListener('click', e => {
-    if (e.target !== dropDownBtn.value) closeDropDown()
-  })
-})
+} = useSelect(
+  dropDownList,
+  dropDownBtn
+)
 </script>
 
 <style lang="scss">

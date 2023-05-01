@@ -1,6 +1,7 @@
 import { FETCH_APPLICANTS_LIST, SET_APPLICANTS_LIST, SET_SCREEN_MODE, TOGGLE_SORT } from './types'
 import { LockalStorage } from './localstorage'
 import { SORT } from '@/composable/constants'
+import { api } from '@/utils/fetch'
 
 import Vuex from 'vuex'
 import Vue from 'vue'
@@ -67,8 +68,7 @@ const store = new Vuex.Store({
   actions: {
     async [FETCH_APPLICANTS_LIST]({ state, commit })
     {
-      const raw = await fetch(state.endpoint)
-      const data = await raw.json()
+      const data = await api(state.endpoint)
 
       commit(
         SET_APPLICANTS_LIST,
